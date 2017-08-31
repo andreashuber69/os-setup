@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Disable overscan
+sudo sed -i "s/#disable_overscan=1/disable_overscan=1/" /boot/config.txt
+
+# Set timezone
+sudo ln -fs /usr/share/zoneinfo/Europe/Zurich /etc/localtime
+sudo dpkg-reconfigure -f noninteractive tzdata
+
+# Create udev rules file for Trezor
+echo 'SUBSYSTEM=="usb", ATTR{idVendor}=="534c", ATTR{idProduct}=="0001", MODE="0666", GROUP="dialout", SYMLINK+="trezor%n"' | sudo tee /etc/udev/rules.d/51-trezor.rules > /dev/null
+echo 'KERNEL=="hidraw*", ATTRS{idVendor}=="534c", ATTRS{idProduct}=="0001",  MODE="0666", GROUP="dialout"' | sudo tee -a /etc/udev/rules.d/51-trezor.rules > /dev/null
+
+# Add panel items
+cat ./panel-items-to-add >> ~/.config/lxpanel/LXDE-pi/panels/panel
+
+# Update and upgrade
+sudo apt-get update
+sudo apt-get --assume-yes upgrade
+
+# Install nodejs 6
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install --assume-yes nodejs
