@@ -28,9 +28,8 @@ sudo usermod -a -G lpadmin pi
 
 # Add printer
 lpadmin -p Brother_HL-2240DW -v usb://Brother/HL-2270DW%20series?serial=C3N809081 -m gutenprint.5.2://hp-lj_2410/expert
-lpadmin -p HL-2240 -o PageSize=A4 
-lpadmin -p HL-2240 -o Resolution=600dpi 
-lpadmin -p HL-2240 -o Duplex=DuplexNoTumble 
+lpadmin -p Brother_HL-2240DW -o PageSize=A4 
+lpadmin -p Brother_HL-2240DW -o Resolution=600dpi 
 
 # Install nodejs 6
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
