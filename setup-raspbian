@@ -23,6 +23,7 @@ git config --global user.email ""
 git config --global user.name "Andreas Huber"
 
 # Install printing support
+# https://thestandardoutput.com/posts/install-brother-hl-2270dw-printer-on-debian-jessie/
 sudo apt-get install cups --assume-yes
 sudo usermod -a -G lpadmin pi
 # dpkg -i --force-all hl2270dwlpr-2.1.0-1a.i386.deb
