@@ -26,8 +26,8 @@ git config --global user.name "Andreas Huber"
 # https://thestandardoutput.com/posts/install-brother-hl-2270dw-printer-on-debian-jessie/
 sudo apt-get install cups --assume-yes
 sudo usermod -a -G lpadmin pi
-# dpkg -i --force-all hl2270dwlpr-2.1.0-1a.i386.deb
-# dpkg -i --force-all cupswrapperHL2270DW-2.0.4-2a.i386.deb
+# Driver:	HP LaserJet 2410 - CUPS+Gutenprint v5.2.11 (grayscale, 2-sided printing)
+# Connection:	usb://Brother/HL-2270DW%20series?serial=C3N809081
 
 # Install nodejs 6
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
