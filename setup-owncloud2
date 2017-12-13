@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Install Owncloud
+wget https://download.owncloud.org/community/owncloud-10.0.4.tar.bz2
+tar -xvf owncloud-10.0.4.tar.bz2
+rm owncloud-10.0.4.tar.bz2
+sudo chown -R www-data:www-data owncloud
+sudo mv owncloud /var/www/html
