@@ -6,3 +6,15 @@ tar -xvf owncloud-10.0.4.tar.bz2
 rm owncloud-10.0.4.tar.bz2
 sudo chown -R www-data:www-data owncloud
 sudo mv owncloud /var/www/html
+
+# Configure apache
+sudo cp ./owncloud.conf /etc/apache2/sites-available/
+sudo ln -s /etc/apache2/sites-available/owncloud.conf /etc/apache2/sites-enabled/owncloud.conf
+sudo a2enmod headers
+sudo systemctl restart apache2
+sudo a2enmod env
+sudo a2enmod dir
+sudo a2enmod mime
+
+# Create mysql DB
+sudo mysql -u "root" "-praspberry" < "create-db.sql"
