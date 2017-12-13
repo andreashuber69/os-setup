@@ -35,13 +35,5 @@ lpadmin -p Brother_HL-2240DW -o Resolution=600dpi
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install nodejs --assume-yes
 
-# Change locale and set memory split
+# Change locale and set memory split, let OS reboot after this
 sudo raspi-config
-
-# Install Apache
-sudo apt-get install apache2 --assume-yes
-sudo systemctl start apache2
-sudo systemctl enable apache2
-
-# Install additional packages required by Owncloud
-sudo apt-get install apache2 mariadb-server libapache2-mod-php7.0 php7.0-gd php7.0-json php7.0-mysql php7.0-curl php7.0-intl php7.0-mcrypt php-imagick php7.0-zip php7.0-xml php7.0-mbstring --assume-yes
