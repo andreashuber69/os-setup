@@ -2,6 +2,9 @@
 
 # This script is based on https://www.avoiderrors.net/owncloud-10-raspberry-pi-3-raspbian-stretch/
 
+read -p "ownCloud admin username: " owncloud_admin_user
+read -s -p "ownCloud admin password: " owncloud_admin_password
+
 # Install Apache
 sudo apt-get install apache2 --assume-yes
 sudo systemctl start apache2
@@ -29,15 +32,11 @@ sudo a2enmod mime
 # Create mysql DB
 sudo mysql -u "root" "-praspberry" < "create-db.sql"
 
-# Configure owncloud
-read -p "ownCloud admin username: " owncloud-admin-user
-read -s -p "ownCloud admin password: " owncloud-admin-password
-
-current-directory=$PWD
+current_directory=$PWD
 cd /var/www/html/owncloud/
-sudo -u www-data php occ maintenance:install --database "mysql" --database-name "owncloud" --database-user "owncloud" --database-pass "12345" --admin-user "$owncloud-admin-user" --admin-pass "$owncloud-admin-password"
-ip-address=$(hostname -I | tr -d '[:space:]')
-sudo -u www-data php occ config:system:set trusted_domains 0 --value=$ip-address
-cd $current-directory
+sudo -u www-data php occ maintenance:install --database "mysql" --database-name "owncloud" --database-user "owncloud" --database-pass "12345" --admin-user "$owncloud_admin_user" --admin-pass "$owncloud_admin_password"
+ip_address=$(hostname -I | tr -d '[:space:]')
+sudo -u www-data php occ config:system:set trusted_domains 0 --value=$ip_address
+cd $current_directory
 
-xdg-open "http://$ip-address/owncloud"
+xdg-open "http://$ip_address/owncloud"
