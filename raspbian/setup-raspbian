@@ -13,6 +13,9 @@ sudo raspi-config nonint do_change_timezone Europe/Zurich
 sudo apt-get update
 sudo apt-get upgrade --assume-yes
 
+# Install write support for NTFS
+sudo apt-get install ntfs-3g --assume-yes
+
 # Install printing support
 sudo apt-get install cups --assume-yes
 sudo usermod -a -G lpadmin pi

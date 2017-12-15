@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# This script is based on https://doc.owncloud.org/server/9.0/admin_manual/maintenance/restore.html
+
+sudo rm -r /var/www/html/owncloud/config/*
+sudo rm -r /var/www/html/owncloud/data/*
+sudo rsync -Aax /var/www/html/owncloud/config /var/www/html/owncloud/data $1
+mysql -h localhost -u owncloud -p12345 owncloud < $1/db.bak
