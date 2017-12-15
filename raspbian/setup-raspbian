@@ -6,9 +6,8 @@ read -p "git user email: " git_user_email
 git config --global user.name "$git_user_name"
 git config --global user.email "$git_user_email"
 
-# Set timezone and locale
+# Set timezone
 sudo raspi-config nonint do_change_timezone Europe/Zurich 
-sudo raspi-config nonint do_change_locale en_US.UTF-8
 
 # Update and upgrade
 sudo apt-get update
@@ -35,6 +34,7 @@ echo 'KERNEL=="hidraw*", ATTRS{idVendor}=="534c", ATTRS{idProduct}=="0001",  MOD
 cat ./panel-items-to-add >> ~/.config/lxpanel/LXDE-pi/panels/panel
 
 # Set options that require reboot
+sudo raspi-config nonint do_change_locale en_US.UTF-8
 sudo raspi-config nonint do_overscan 1
 sudo raspi-config nonint do_memory_split 32
 reboot
