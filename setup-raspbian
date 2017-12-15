@@ -10,13 +10,6 @@ git config --global user.email "$git_user_email"
 sudo raspi-config nonint do_change_timezone Europe/Zurich 
 sudo raspi-config nonint do_change_locale en_US.UTF-8
 
-# Create udev rules file for Trezor
-echo 'SUBSYSTEM=="usb", ATTR{idVendor}=="534c", ATTR{idProduct}=="0001", MODE="0666", GROUP="dialout", SYMLINK+="trezor%n"' | sudo tee /etc/udev/rules.d/51-trezor.rules > /dev/null
-echo 'KERNEL=="hidraw*", ATTRS{idVendor}=="534c", ATTRS{idProduct}=="0001",  MODE="0666", GROUP="dialout"' | sudo tee -a /etc/udev/rules.d/51-trezor.rules > /dev/null
-
-# Add panel items
-cat ./panel-items-to-add >> ~/.config/lxpanel/LXDE-pi/panels/panel
-
 # Update and upgrade
 sudo apt-get update
 sudo apt-get upgrade --assume-yes
@@ -33,6 +26,13 @@ lpadmin -p Brother_HL-2240DW -o Resolution=600dpi
 # Install nodejs 6
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install nodejs --assume-yes
+
+# Create udev rules file for Trezor
+echo 'SUBSYSTEM=="usb", ATTR{idVendor}=="534c", ATTR{idProduct}=="0001", MODE="0666", GROUP="dialout", SYMLINK+="trezor%n"' | sudo tee /etc/udev/rules.d/51-trezor.rules > /dev/null
+echo 'KERNEL=="hidraw*", ATTRS{idVendor}=="534c", ATTRS{idProduct}=="0001",  MODE="0666", GROUP="dialout"' | sudo tee -a /etc/udev/rules.d/51-trezor.rules > /dev/null
+
+# Add panel items
+cat ./panel-items-to-add >> ~/.config/lxpanel/LXDE-pi/panels/panel
 
 # Set options that require reboot
 sudo raspi-config nonint do_overscan 1
