@@ -5,13 +5,10 @@
 read -p "ownCloud admin username: " owncloud_admin_user
 read -s -p "ownCloud admin password: " owncloud_admin_password
 
-# Install Apache
-sudo apt-get install apache2 --assume-yes
+# Install Apache and packages required by ownCloud
+sudo apt-get install apache2 mariadb-server libapache2-mod-php7.0 php7.0-gd php7.0-json php7.0-mysql php7.0-curl php7.0-intl php7.0-mcrypt php-imagick php7.0-zip php7.0-xml php7.0-mbstring --assume-yes
 sudo systemctl start apache2
 sudo systemctl enable apache2
-
-# Install additional packages required by Owncloud
-sudo apt-get install apache2 mariadb-server libapache2-mod-php7.0 php7.0-gd php7.0-json php7.0-mysql php7.0-curl php7.0-intl php7.0-mcrypt php-imagick php7.0-zip php7.0-xml php7.0-mbstring --assume-yes
 
 # Install ownCloud
 wget https://download.owncloud.org/community/owncloud-10.0.4.tar.bz2
@@ -25,13 +22,11 @@ sudo cp ./owncloud.conf /etc/apache2/sites-available/
 sudo ln -s /etc/apache2/sites-available/owncloud.conf /etc/apache2/sites-enabled/owncloud.conf
 sudo a2enmod headers
 sudo systemctl restart apache2
-sudo a2enmod env
-sudo a2enmod dir
-sudo a2enmod mime
 
 # Create mysql DB
-sudo mysql -u "root" "-praspberry" < "create-db.sql"
+sudo mysql -u "root" "-praspberry" < "create-owncloud-db.sql"
 
+# Configure ownCloud
 current_directory=$PWD
 cd /var/www/html/owncloud/
 sudo -u www-data php occ maintenance:install --database "mysql" --database-name "owncloud" --database-user "owncloud" --database-pass "12345" --admin-user "$owncloud_admin_user" --admin-pass "$owncloud_admin_password"
