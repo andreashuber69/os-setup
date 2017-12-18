@@ -1,6 +1,8 @@
 #!/bin/bash
-
 # This script is based on https://www.avoiderrors.net/owncloud-10-raspberry-pi-3-raspbian-stretch/
+set -o errexit
+set -o nounset
+set -o pipefail
 
 read -p "ownCloud admin username: " owncloud_admin_user
 read -s -p "ownCloud admin password: " owncloud_admin_password
