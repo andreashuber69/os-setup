@@ -36,8 +36,11 @@ sudo apt-get install nodejs --assume-yes
 echo 'SUBSYSTEM=="usb", ATTR{idVendor}=="534c", ATTR{idProduct}=="0001", MODE="0666", GROUP="dialout", SYMLINK+="trezor%n"' | sudo tee /etc/udev/rules.d/51-trezor.rules > /dev/null
 echo 'KERNEL=="hidraw*", ATTRS{idVendor}=="534c", ATTRS{idProduct}=="0001",  MODE="0666", GROUP="dialout"' | sudo tee -a /etc/udev/rules.d/51-trezor.rules > /dev/null
 
-# Add panel items
-cat ./panel-items-to-add >> ~/.config/lxpanel/LXDE-pi/panels/panel
+# Add panel items (displayed in the top right corner)
+# Raspbian Lite doesn't have them so check if file exists first
+if [ -f "~/.config/lxpanel/LXDE-pi/panels/panel" ]; then
+  cat ./panel-items-to-add >> ~/.config/lxpanel/LXDE-pi/panels/panel
+fi
 
 # Set options that require reboot
 sudo raspi-config nonint do_change_locale en_US.UTF-8
