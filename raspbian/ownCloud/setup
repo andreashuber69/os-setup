@@ -1,5 +1,6 @@
 #!/bin/bash
-# This script is based on https://www.avoiderrors.net/owncloud-10-raspberry-pi-3-raspbian-stretch/
+# Based on https://www.avoiderrors.net/owncloud-10-raspberry-pi-3-raspbian-stretch/
+# Assumes that ../base/setup has been executed successfully
 set -o errexit
 set -o nounset
 set -o pipefail
@@ -26,7 +27,7 @@ sudo a2enmod headers
 sudo systemctl restart apache2
 
 # Create mysql DB
-sudo mysql -u "root" "-praspberry" < "create-owncloud-db.sql"
+sudo mysql -u "root" "-praspberry" < "create-db.sql"
 
 # Configure ownCloud
 current_directory=$PWD
