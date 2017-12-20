@@ -22,8 +22,20 @@ Changing the locale to en_US.UTF-8 seems to be required however (the same goes f
 3. `./setup` (prompts for the credentials for the **ownCloud** administrator)
 
 ## D. Configure ownCloud
-1. Direct your browser to http://*[your IP address]*/owncloud (on **Raspbian** the script does this automatically).
-2. Enter the credentials you provided under C.
-3. In the top right corner, click on your admin user name and **Users**.
+1. Direct your browser to http://*[Raspberry Pi IP address]*/owncloud (on **Raspbian** the script does this automatically).
+2. Enter the credentials you provided under [C](#c-install-owncloud).
+3. In the top right corner, click on the admin user name and **Users**.
 4. On the **Users** page, create a separate user for each person who needs to have access (it is recommended to only
    use the **ownCloud** administrator to create other users, not for anything else).
+
+## E. Install DAVdroid on your Android phone
+1. Install **DAVdroid** for free through [F-Droid](https://f-droid.org/packages/at.bitfire.davdroid/) or buy it on
+   [Google Play](https://play.google.com/store/apps/details?id=at.bitfire.davdroid).
+2. Make sure your **Android** phone is connected to the same network as the **Raspberry Pi** running **ownCloud**. If
+   unsure, direct your browser to http://*[Raspberry Pi IP address]*/owncloud. You should see the **ownCloud** login screen. 
+3. Run **DAVdroid**.
+4. Tap the **+** button in the bottom right corner.
+5. Tap **Login with URL and user name**.
+6. Enter http://*[Raspberry Pi IP address]*/owncloud/remote.php/dav/ for the **Base URL**.
+7. Enter the **User name** and **Password** of an **ownCloud** user created under [D](#d-configure-owncloud).
+8. Tap **LOGIN**.
