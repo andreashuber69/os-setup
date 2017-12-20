@@ -33,8 +33,13 @@ sudo mysql -u "root" "-praspberry" < "create-db.sql"
 current_directory=$PWD
 cd /var/www/html/owncloud/
 sudo -u www-data php occ maintenance:install --database "mysql" --database-name "owncloud" --database-user "owncloud" --database-pass "12345" --admin-user "$owncloud_admin_user" --admin-pass "$owncloud_admin_password"
+
+# Add our IP address to the ownCloud trusted domains
 ip_address=$(hostname -I | tr -d '[:space:]')
 sudo -u www-data php occ config:system:set trusted_domains 0 --value=$ip_address
 cd $current_directory
 
-xdg-open "http://$ip_address/owncloud"
+if [ -x "$(command -v xdg-open)" ]; then
+  # Open browser on Raspbian (doesn't work on Lite)
+  xdg-open "http://$ip_address/owncloud"
+fi
