@@ -3,12 +3,6 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-# Set git credentials
-read -p "git user name: " git_user_name
-read -p "git user email: " git_user_email
-git config --global user.name "$git_user_name"
-git config --global user.email "$git_user_email"
-
 # Set timezone
 sudo raspi-config nonint do_change_timezone Europe/Zurich 
 
