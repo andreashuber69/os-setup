@@ -1,4 +1,7 @@
 # os-setup
-Contains scripts to automate OS configuration and installation of additional software. 
+Contains scripts and supporting files to automate OS configuration and installation of additional software. All files are intended to work as described in the documentation for the respective OS.
 
-## [Raspbian](https://github.com/andreashuber69/os-setup/blob/master/raspbian/README.md)
+> **Note**: All files primarily cover my needs and intentionally contain very few customization points. Your needs will 
+> most likely be different, so please adapt accordingly.
+
+## [Raspbian](raspbian/README.md)
