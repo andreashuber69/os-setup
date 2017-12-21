@@ -1,5 +1,7 @@
 # Raspbian
-The files in this folder are intended to customize a freshly installed **Raspbian** on a **Raspberry Pi 3 Model B**.
+The following steps describe how I've set up my **Raspberry Pi 3 Model B**. I'm currently testing whether it can be used
+as a server for sensitive data (like e.g. my contacts, photos and videos), as an alternative to storing such data with a
+cloud service offered by the likes of Microsoft, Google, etc. 
 
 ## A. Install the OS
 Use [NOOBS or NOOBS Lite](https://www.raspberrypi.org/downloads/noobs/) to install **Raspbian** or **Raspbian Lite**
@@ -13,7 +15,7 @@ and boot the freshly installed OS.
 5. `./setup` (this will reboot the **Raspberry Pi** when everything is done)
 
 Most commands in the `setup` script just tweak things to my liking and are not strictly necessary for what comes next.
-Changing the locale to en_US.UTF-8 seems to be required however (the same goes for the reboot), follow URL in
+Changing the locale to en_US.UTF-8 seems to be required however (the same goes for the reboot), follow the URL in
 [setup](ownCloud/setup) for more information.
 
 ## C. Install ownCloud
@@ -22,7 +24,8 @@ Changing the locale to en_US.UTF-8 seems to be required however (the same goes f
 3. `./setup` (prompts for the credentials for the **ownCloud** administrator)
 
 ## D. Configure ownCloud
-1. Direct your browser to http://*[Raspberry Pi IP address]*/owncloud (on **Raspbian** the script does this automatically).
+1. Direct your browser to http://*[Raspberry Pi IP address]*/owncloud (on **Raspbian** the script does this
+   automatically).
 2. Enter the credentials you provided under [C](#c-install-owncloud).
 3. In the top right corner, click on the admin user name and **Users**.
 4. On the **Users** page, create a separate user for each person who needs to have access (it is recommended to only
@@ -32,7 +35,8 @@ Changing the locale to en_US.UTF-8 seems to be required however (the same goes f
 1. Install **DAVdroid** for free through [F-Droid](https://f-droid.org/packages/at.bitfire.davdroid/) or buy it on
    [Google Play](https://play.google.com/store/apps/details?id=at.bitfire.davdroid).
 2. Make sure your **Android** phone is connected to the same network as the **Raspberry Pi** running **ownCloud**. If
-   unsure, direct your browser to http://*[Raspberry Pi IP address]*/owncloud. You should see the **ownCloud** login screen. 
+   unsure, direct your browser to http://*[Raspberry Pi IP address]*/owncloud. You should see the **ownCloud** login
+   screen. 
 3. Run **DAVdroid**.
 4. Tap the **+** button in the bottom right corner.
 5. Tap **Login with URL and user name**.
@@ -49,4 +53,5 @@ Changing the locale to en_US.UTF-8 seems to be required however (the same goes f
    calendar (if prompted).
 5. Check **Contacts** and tap the **Refresh** icon.
 6. Tap the **Back** button until you are back in the **Android Contacts** app.
-7. You should now see the **ownCloud** contacts (if any) and you can now create contacts that will be stored in **ownCloud**.
+7. You should now see the **ownCloud** contacts (if any) and you can now create contacts that will be stored in
+   **ownCloud**.
