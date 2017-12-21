@@ -12,7 +12,8 @@ The following steps assume that you've [successfully setup ownCloud](README.md).
 4. Tap the **+** button in the bottom right corner.
 5. Tap **Login with URL and user name**.
 6. Enter *http://[Raspberry Pi IP address]/owncloud/remote.php/dav/* for the **Base URL**.
-7. Enter the **User name** and **Password** of an **ownCloud** user created under [D](#d-configure-owncloud).
+7. Enter the **User name** and **Password** of an **ownCloud** user created under
+   [D. Configure ownCloud](README.md#d-configure-owncloud).
 8. Tap **LOGIN**.
 9. Select **Groups are per-contact categories** and tap **CREATE ACCOUNT**.
 
@@ -20,9 +21,10 @@ The following steps assume that you've [successfully setup ownCloud](README.md).
 1. Open the **Android Contacts** app.
 2. Open the menu in the top right corner and tap **Accounts**.
 3. Tap **Add account** and **DAVDroid Address book**.
-4. Select the account created under [E](#e-install-davdroid-on-your-android-phone) and allow access to your contacts and
+4. Select the account created under [A](#a-install-davdroid-on-your-android-phone) and allow access to your contacts and
    calendar (if prompted).
 5. Check **Contacts** and tap the **Sync** icon.
 6. Tap the **Back** button until you are back in the **Android Contacts** app.
 7. You should now see the **ownCloud** contacts (if any) and you can now create contacts that will be stored in
    **ownCloud**.
+   
