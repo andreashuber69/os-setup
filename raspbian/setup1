@@ -31,13 +31,10 @@ sudo apt-get install nodejs --assume-yes
 sudo cp 51-trezor.rules /etc/udev/rules.d
 
 # Add panel items (displayed in the top right corner)
-# Raspbian Lite doesn't have them so check if file exists first
-if [ -f "~/.config/lxpanel/LXDE-pi/panels/panel" ]; then
-  cat ./panel-items-to-add >> ~/.config/lxpanel/LXDE-pi/panels/panel
-fi
+cat ./panel-items-to-add >> ~/.config/lxpanel/LXDE-pi/panels/panel
 
 # Set options that require reboot
-sudo raspi-config nonint do_change_locale en_US.UTF-8
 sudo raspi-config nonint do_overscan 1
-sudo raspi-config nonint do_memory_split 32
-reboot
+
+git clone https://github.com/andreashuber69/owncloud ../../owncloud
+./../../owncloud/setup1
