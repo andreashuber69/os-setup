@@ -23,6 +23,7 @@ lpadmin -p Brother_HL-2270DW -E -v usb://Brother/HL-2270DW%20series?serial=C3N80
 lpadmin -p Brother_HL-2270DW -o PageSize=A4
 lpadmin -p Brother_HL-2270DW -o Resolution=600dpi
 lpadmin -p Brother_HL-2270DW -o Duplex=DuplexNoTumble
+lpoptions -d Brother_HL-2270DW
 
 # Install nodejs 6
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
