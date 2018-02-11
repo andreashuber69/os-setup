@@ -10,8 +10,8 @@ sudo raspi-config nonint do_change_timezone Europe/Zurich
 sudo apt-get update
 sudo apt-get upgrade --assume-yes
 
-# Install write support for NTFS (necessary if you want to write to a memory stick on Windows and Raspbian)
-sudo apt-get install ntfs-3g --assume-yes
+# Install support for exFAT (necessary if you want to mount a memory stick on Windows and Raspbian)
+sudo apt-get install exfat-fuse exfat-utils --assume-yes
 
 # Install printing support
 # Direct web browser to http://localhost:631 for further administration 
