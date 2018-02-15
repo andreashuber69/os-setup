@@ -14,14 +14,17 @@ The following steps describe how I've set up my **Dell XPS 13 9370**.
 2. Navigate to **Settings**, **System Configuration**, **Thunderbolt Adapter Configuration**.
 3. Check **Enable Thunderbolt Adapter Boot Support** and click **Apply**, click **OK** and **Exit**.
 
-## B. Install the OS
+## C. Install the OS
 1. Insert the USB Stick into the **Dell XPS 13 9370** (using the included USB-C to USB-A adapter), turn it on and keep
-   hitting the **F12** button until the boot screen shows up. 
+   hitting the **F12** button until the boot screen appears. 
 2. Select the USB stick and press **Enter**.
 
 ## D. Re-enable Secure Boot
 1. Open a terminal window.
 2. `sudo mokutil --enable-validation`
 3. Enter a temporary password twice.
-4. Reboot the machine.
+4. Restart the machine, wait for the **Press any key to change the MDK state** screen to appear and press any key.
+5. In the menu, select **Change Secure Boot state**
+6. Enter the requested letters of the password.
+7. Select **Yes**.
 
