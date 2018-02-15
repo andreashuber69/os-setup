@@ -48,5 +48,9 @@ The following steps describe how I've set up my **Dell XPS 13 9370**.
 24. Select **Yes** and press **Enter**.
 25. Select **Reboot** and press **Enter**.
 
-## D. 
-
+## D. Install Software
+1. Open a terminal window.
+2. `sudo apt-get install git --assume-yes`
+3. `git clone https://github.com/andreashuber69/os-setup.git`
+4. `cd os-setup/ubuntu`
+5. `./setup1`
