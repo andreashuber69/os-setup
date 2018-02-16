@@ -23,10 +23,17 @@ sudo swapon /swapfile
 gsettings set org.gnome.desktop.session idle-delay 600
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 3600
 gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'suspend'
-# Enable this once hibernation works
+# Uncomment this once hibernation works
 # gsettings set org.gnome.settings-daemon.plugins.power critical-battery-action 'hibernate'
 gsettings set org.gnome.settings-daemon.plugins.power percentage-critical 5
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 900
+
+# Add printer
+lpadmin -p Brother_HL-2270DW -E -v dnssd://Brother%20HL-2270DW%20series._pdl-datastream._tcp.local/ -m gutenprint.5.2://brother-hl-2250dn/expert
+lpadmin -p Brother_HL-2270DW -o PageSize=A4
+lpadmin -p Brother_HL-2270DW -o Resolution=600dpi
+lpadmin -p Brother_HL-2270DW -o Duplex=DuplexNoTumble
+lpoptions -d Brother_HL-2270DW
 
 # Install/uninstall software
 sudo apt-get remove firefox ubuntu-web-launchers --assume-yes
