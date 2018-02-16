@@ -39,3 +39,6 @@ lpoptions -d Brother_HL-2270DW
 sudo apt-get remove firefox ubuntu-web-launchers --assume-yes
 sudo apt-get install chromium-browser --assume-yes
 
+# Re-enable secure boot
+sudo update-secureboot-policy --enable
+
