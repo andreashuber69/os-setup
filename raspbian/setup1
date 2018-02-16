@@ -19,7 +19,7 @@ sudo apt-get install cups --assume-yes
 sudo usermod -a -G lpadmin pi
 
 # Add printer
-lpadmin -p Brother_HL-2270DW -E -v usb://Brother/HL-2270DW%20series?serial=C3N809081 -m gutenprint.5.2://hp-lj_2410/expert
+lpadmin -p Brother_HL-2270DW -E -v usb://Brother/HL-2270DW%20series?serial=C3N809081 -m gutenprint.5.2://brother-hl-2250dn/expert
 lpadmin -p Brother_HL-2270DW -o PageSize=A4
 lpadmin -p Brother_HL-2270DW -o Resolution=600dpi
 lpadmin -p Brother_HL-2270DW -o Duplex=DuplexNoTumble
