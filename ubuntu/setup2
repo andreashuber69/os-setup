@@ -35,16 +35,10 @@ lpoptions -d Brother_HL-2270DW
 sudo apt-get remove firefox ubuntu-web-launchers --assume-yes
 sudo apt-get install chromium-browser --assume-yes
 
-# Install jq (command line JSON parser/editor) and wmctrl (close applications from the command line)
-sudo apt-get install jq wmctrl --assume-yes
+# Install jq (command line JSON parser/editor), sqlite and wmctrl (close applications from the command line)
+sudo apt-get install jq wmctrl sqlite3 --assume-yes
 
-# Adapt Chromium preferences
-chromium-browser &
-sleep 10
-wmctrl -c Chromium
-sleep 1
-cat ~/.config/chromium/Default/Preferences | jq '.autofill.enabled=false | .credentials_enable_service=false | .enable_do_not_track=true | .intl.accept_languages="en-US,en,de-CH,de" | .translate_blocked_languages += ["de"] | .spellcheck.dictionaries += ["en-US", "de"]' >adapted_preferences.json
-mv adapted_preferences.json ~/.config/chromium/Default/Preferences
+./reset-browser-preferences
 
 # Install Visual Studio Code
 wget -O vs-code.deb https://go.microsoft.com/fwlink/?LinkID=760868
