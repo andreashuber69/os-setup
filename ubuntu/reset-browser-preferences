@@ -1,28 +1,49 @@
 #!/bin/bash
+# NOTE: This script depends on the wmctrl, sqlite3 and jq packages. None of these are typically installed out of the
+# box on any debian flavor. Of course it also depends on chromium-browser being present.
+#
 # Resets Chromium browser preferences and then modfies the default to my liking:
-# - Set DuckDuckGo as the default search engine (default: Google)
-# - Turn off 'Use a web service to help resolve navigation errors'
-# - Turn off 'Use a prediction service to load pages more quickly'
-# - Turn on 'Send a "Do Not Track" request with your browsing traffic'
-# - Turn off 'Autofill'
-# - Turn off 'Manage passwords'
-# - Set 'Languages' to English and German
-# - Set 'Spell check' to English and German
-# - Turn off 'Continue running background apps when Chromium is closed'
+# - Delete all search engines except DuckDuckGo.
+# - Set DuckDuckGo as the default search engine.
+# - Turn off 'Use a web service to help resolve navigation errors'.
+# - Turn off 'Use a prediction service to load pages more quickly'.
+# - Turn on 'Send a "Do Not Track" request with your browsing traffic'.
+# - Turn off 'Autofill'.
+# - Turn off 'Manage passwords'.
+# - Set 'Languages' to English and German.
+# - Set 'Spell check' to English and German.
+# - Turn off 'Continue running background apps when Chromium is closed'.
 set -o errexit
 set -o nounset
 set -o pipefail
 
-# When Chromium is not currently running, wmctrl ends with a non-zero exit code
+# Close Chromium (if it's currently running) and wait for it to shut down completely.
+# When Chromium is not currently running, wmctrl ends with a non-zero exit code. If it weren't for the || true bit,
+# a non-zero exit code would abort the script (due to errexit).
 wmctrl -c Chromium || true
 sleep 3
+
+# Delete all Chromium config data
 rm -r ~/.config/chromium
+
+# Restart Chromium and wait for the config initialization to finish
 chromium-browser &
 sleep 10
+
+# Close Chromium and wait for it to shut down completely
 wmctrl -c Chromium
 sleep 3
-duck_guid=`sqlite3 ~/.config/chromium/Default/Web\ Data "select sync_guid from keywords where short_name='DuckDuckGo';" ""`
+
+# Delete all search engines except DuckDuckGo
+sqlite3 ~/.config/chromium/Default/Web\ Data "delete from keywords where short_name <> 'DuckDuckGo';"
+
+# Get the GUID of DuckDuckGo
+duck_guid=$(sqlite3 ~/.config/chromium/Default/Web\ Data "select sync_guid from keywords where short_name='DuckDuckGo';" "")
+
+# Modify most of the preferences to my liking (see comments at the top for details)...
 cat ~/.config/chromium/Default/Preferences | jq --arg guid $duck_guid '.alternate_error_pages.enabled=false | .autofill.enabled=false | .credentials_enable_service=false | .default_search_provider.synced_guid=$guid | .default_search_provider_data.template_url_data={ "keyword": "duckduckgo.com", "short_name": "DuckDuckGo", "suggestions_url": "https://duckduckgo.com/ac/?q={searchTerms}&type=list", "synced_guid": $guid, "url": "https://duckduckgo.com/?q={searchTerms}&t=canonical" } | .enable_do_not_track=true | .intl.accept_languages="en-US,en,de-CH,de" | .net.network_prediction_options=2 | .spellcheck.dictionaries += ["en-US", "de"] | .translate_blocked_languages += ["de"]' >adapted-preferences.json
 mv adapted-preferences.json ~/.config/chromium/Default/Preferences
+
+# ...except for background mode, which sits in a different file 
 cat ~/.config/chromium/Local\ State | jq '.background_mode.enabled=false' >adapted-local-state.json
 mv adapted-local-state.json ~/.config/chromium/Local\ State

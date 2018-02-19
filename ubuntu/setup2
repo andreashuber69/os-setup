@@ -3,6 +3,10 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+# Install wmctrl (close applications from the command line), sqlite3, jq (command line JSON parser/editor) and exfat-*
+# (necessary if you want to mount a memory stick on Windows and Linux)
+sudo apt-get install wmctrl sqlite3 jq exfat-fuse exfat-utils --assume-yes
+
 # Enlarge swap file to the amount of physical memory. Besides other benefits, this should enable hibernation.
 # For some reason (probably drivers) hibernation does not work yet, but we'll do this anyway so that we can easily
 # enable hibernation later.
@@ -35,9 +39,6 @@ lpoptions -d Brother_HL-2270DW
 sudo apt-get remove firefox ubuntu-web-launchers --assume-yes
 sudo apt-get install chromium-browser --assume-yes
 
-# Install jq (command line JSON parser/editor), sqlite and wmctrl (close applications from the command line)
-sudo apt-get install jq wmctrl sqlite3 --assume-yes
-
 ./reset-browser-preferences
 
 # Install Visual Studio Code
@@ -50,6 +51,6 @@ wget -O bcompare.deb https://www.scootersoftware.com/bcompare-4.2.4.22795_amd64.
 sudo dpkg -i bcompare.deb
 rm bcompare.deb
 
-# Get missing dependencies
+# Get missing dependencies for the packages installed with dpkg
 sudo apt-get install -f --assume-yes
 
