@@ -1,0 +1,8 @@
+#!/bin/bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# Install wmctrl (close applications from the command line), sqlite3, jq (command line JSON parser/editor) and exfat-*
+# (necessary if you want to mount a memory stick on Windows and Linux)
+sudo apt-get install wmctrl sqlite3 jq exfat-fuse exfat-utils --assume-yes

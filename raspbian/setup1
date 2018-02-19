@@ -10,20 +10,14 @@ sudo raspi-config nonint do_change_timezone Europe/Zurich
 sudo apt-get update
 sudo apt-get upgrade --assume-yes
 
-# Install support for exFAT (necessary if you want to mount a memory stick on Windows and Raspbian)
-sudo apt-get install exfat-fuse exfat-utils --assume-yes
+./../common/install-prerequisites
 
 # Install printing support
-# Direct web browser to http://localhost:631 for further administration 
 sudo apt-get install cups --assume-yes
 sudo usermod -a -G lpadmin pi
 
-# Add printer
-lpadmin -p Brother_HL-2270DW -E -v usb://Brother/HL-2270DW%20series?serial=C3N809081 -m gutenprint.5.2://brother-hl-2250dn/expert
-lpadmin -p Brother_HL-2270DW -o PageSize=A4
-lpadmin -p Brother_HL-2270DW -o Resolution=600dpi
-lpadmin -p Brother_HL-2270DW -o Duplex=DuplexNoTumble
-lpoptions -d Brother_HL-2270DW
+./../common/add-printer
+./../common/reset-browser-preferences
 
 # Install nodejs 6
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -

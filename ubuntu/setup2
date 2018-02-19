@@ -3,9 +3,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-# Install wmctrl (close applications from the command line), sqlite3, jq (command line JSON parser/editor) and exfat-*
-# (necessary if you want to mount a memory stick on Windows and Linux)
-sudo apt-get install wmctrl sqlite3 jq exfat-fuse exfat-utils --assume-yes
+./../common/install-prerequisites
 
 # Enlarge swap file to the amount of physical memory. Besides other benefits, this should enable hibernation.
 # For some reason (probably drivers) hibernation does not work yet, but we'll do this anyway so that we can easily
@@ -28,18 +26,13 @@ gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'suspe
 gsettings set org.gnome.settings-daemon.plugins.power percentage-critical 5
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 900
 
-# Add printer
-lpadmin -p Brother_HL-2270DW -E -v dnssd://Brother%20HL-2270DW%20series._pdl-datastream._tcp.local/ -m gutenprint.5.2://brother-hl-2250dn/expert
-lpadmin -p Brother_HL-2270DW -o PageSize=A4
-lpadmin -p Brother_HL-2270DW -o Resolution=600dpi
-lpadmin -p Brother_HL-2270DW -o Duplex=DuplexNoTumble
-lpoptions -d Brother_HL-2270DW
+./../common/add-printer
 
 # Uninstall Firefox, install Chromium
 sudo apt-get remove firefox ubuntu-web-launchers --assume-yes
 sudo apt-get install chromium-browser --assume-yes
 
-./reset-browser-preferences
+./../common/reset-browser-preferences
 
 # Install Visual Studio Code
 wget -O vs-code.deb https://go.microsoft.com/fwlink/?LinkID=760868

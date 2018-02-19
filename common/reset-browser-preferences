@@ -1,6 +1,6 @@
 #!/bin/bash
-# NOTE: This script depends on the wmctrl, sqlite3 and jq packages. None of these are typically installed out of the
-# box on any debian flavor. Of course it also depends on chromium-browser being present.
+# NOTE: Depends on the wmctrl, sqlite3 and jq packages. None of these are typically installed out of the box on any
+# debian flavor. Of course, also depends on chromium-browser being present.
 #
 # Resets Chromium browser preferences and then modfies the default to my liking:
 # - Delete all search engines except DuckDuckGo.
