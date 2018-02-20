@@ -32,7 +32,7 @@ gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-tim
 sudo apt-get remove firefox ubuntu-web-launchers --assume-yes
 sudo apt-get install chromium-browser --assume-yes
 
-./../common/reset-browser-preferences
+./../common/reset-browser-preferences chromium-browser
 
 # Install Visual Studio Code
 wget -O vs-code.deb https://go.microsoft.com/fwlink/?LinkID=760868

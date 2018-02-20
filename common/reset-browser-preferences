@@ -2,7 +2,7 @@
 # NOTE: Depends on the wmctrl, sqlite3 and jq packages. None of these are typically installed out of the box on any
 # debian flavor. Of course, also depends on chromium-browser being present.
 #
-# Resets Chromium browser preferences and then modfies the default to my liking:
+# Resets Chromium or Chrome browser preferences and then modfies the default to my liking:
 # - Delete all search engines except DuckDuckGo.
 # - Set DuckDuckGo as the default search engine.
 # - Turn off 'Use a web service to help resolve navigation errors'.
@@ -17,46 +17,60 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-# Close Chromium (if it's currently running) and wait for it to shut down completely.
-# When Chromium is not currently running, wmctrl ends with a non-zero exit code. If it weren't for the || true bit,
-# a non-zero exit code would abort the script (due to errexit).
-wmctrl -c Chromium || true
-sleep 3
-
-# Delete all Chromium config data
-rm -rf ~/.config/chromium
-
-# By default, at least on Ubuntu, a newly installed Chromium browser displays the welcome page on its first run.
-# That page seems to pause preferences initialization such that the "keywords" table in the
-# ~/.config/chromium/Default/Web\ Data database stays empty until the user interacts with the page (e.g. by clicking
-# "No thanks") or opens a new tab. To avoid the necessity of the user having to interact in any way, we change the
-# master_preferences file of the installation such that the welcome page is no longer displayed and initialization
-# runs to completion.
-if [ ! -f "/usr/lib/chromium-browser/master_preferences" ]; then
-    echo "{ }" | sudo tee /usr/lib/chromium-browser/master_preferences
+if [ $# -ne 1 ] || [[ "$1" != "chromium-browser" ] && [ "$1" != "google-chrome" ]]; then
+    echo "Error: The only argument must either be chromium-browser or google-chrome."
+    exit 1
 fi
 
-cat /usr/lib/chromium-browser/master_preferences | jq '.first_run_tabs=["http://new_tab_page"]' >adapted-master-preferences.json
-sudo mv adapted-master-preferences.json /usr/lib/chromium-browser/master_preferences
+if [ "$1" == "chromium-browser" ]; then
+    title="Chromium"
+    master_preferences=/usr/lib/chromium-browser/master_preferences
+    config_folder=~/.config/chromium
+else
+    title="Chrome"
+    master_preferences=/opt/google/chrome/master_preferences
+    config_folder=~/.config/google-chrome
+fi
 
-# Restart Chromium and wait for the config initialization to finish
-chromium-browser &
+# Close browser (if it's currently running) and wait for it to shut down completely.
+# When it is not currently running, wmctrl ends with a non-zero exit code. If it weren't for the || true bit,
+# a non-zero exit code would abort the script (due to errexit).
+wmctrl -c $title || true
+sleep 3
+
+# Delete all config data
+rm -rf $config_folder
+
+# By default, at least on Ubuntu, a newly installed browser displays the welcome page on its first run. That page seems
+# to pause preferences initialization such that the "keywords" table in the $config_folder/Default/Web\ Data database
+# stays empty until the user interacts with the page (e.g. by clicking "No thanks") or opens a new tab. To avoid the
+# necessity of the user having to interact in any way, we change the master_preferences file of the installation such
+# that the welcome page is no longer displayed and initialization runs to completion.
+if [ ! -f "$master_preferences" ]; then
+    echo "{ }" | sudo tee $master_preferences
+fi
+
+cat $master_preferences | jq '.first_run_tabs=["http://new_tab_page"]' >adapted-master-preferences.json
+sudo mv adapted-master-preferences.json $master_preferences
+
+# Restart browser and wait for the config initialization to finish
+$1 &
 sleep 10
 
 # Close Chromium and wait for it to shut down completely
-wmctrl -c Chromium
+wmctrl -c $title
 sleep 3
 
 # Delete all search engines except DuckDuckGo
-sqlite3 ~/.config/chromium/Default/Web\ Data "delete from keywords where short_name <> 'DuckDuckGo';"
+sqlite3 $config_folder/Default/Web\ Data "delete from keywords where short_name <> 'DuckDuckGo';"
 
 # Get the GUID of DuckDuckGo
-duck_guid=$(sqlite3 ~/.config/chromium/Default/Web\ Data "select sync_guid from keywords where short_name='DuckDuckGo';" "")
+duck_guid=$(sqlite3 $config_folder/Default/Web\ Data "select sync_guid from keywords where short_name='DuckDuckGo';" "")
 
 # Modify most of the preferences to my liking (see comments at the top for details)...
-cat ~/.config/chromium/Default/Preferences | jq --arg guid $duck_guid '.browser.has_seen_welcome_page=true | .alternate_error_pages.enabled=false | .autofill.enabled=false | .credentials_enable_service=false | .default_search_provider.synced_guid=$guid | .default_search_provider_data.template_url_data={ "keyword": "duckduckgo.com", "short_name": "DuckDuckGo", "suggestions_url": "https://duckduckgo.com/ac/?q={searchTerms}&type=list", "synced_guid": $guid, "url": "https://duckduckgo.com/?q={searchTerms}&t=canonical" } | .enable_do_not_track=true | .intl.accept_languages="en-US,en,de-CH,de" | .net.network_prediction_options=2 | .search.suggest_enabled=true | .spellcheck.dictionaries += ["en-US", "de"] | .translate_blocked_languages += ["de"]' >adapted-preferences.json
-mv adapted-preferences.json ~/.config/chromium/Default/Preferences
+cat $config_folder/Default/Preferences | jq --arg guid $duck_guid '.browser.has_seen_welcome_page=true | .alternate_error_pages.enabled=false | .autofill.enabled=false | .credentials_enable_service=false | .default_search_provider.synced_guid=$guid | .default_search_provider_data.template_url_data={ "keyword": "duckduckgo.com", "short_name": "DuckDuckGo", "suggestions_url": "https://duckduckgo.com/ac/?q={searchTerms}&type=list", "synced_guid": $guid, "url": "https://duckduckgo.com/?q={searchTerms}&t=canonical" } | .enable_do_not_track=true | .intl.accept_languages="en-US,en,de-CH,de" | .net.network_prediction_options=2 | .search.suggest_enabled=true | .spellcheck.dictionaries += ["en-US", "de"] | .translate_blocked_languages += ["de"]' >adapted-preferences.json
+mv adapted-preferences.json $config_folder/Default/Preferences
 
 # ...except for background mode, which sits in a different file 
-cat ~/.config/chromium/Local\ State | jq '.background_mode.enabled=false' >adapted-local-state.json
-mv adapted-local-state.json ~/.config/chromium/Local\ State
+cat $config_folder/Local\ State | jq '.background_mode.enabled=false' >adapted-local-state.json
+mv adapted-local-state.json $config_folder/Local\ State
