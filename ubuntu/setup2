@@ -43,6 +43,15 @@ rm vs-code.deb
 wget -O bcompare.deb https://www.scootersoftware.com/bcompare-4.2.4.22795_amd64.deb
 sudo dpkg -i bcompare.deb
 rm bcompare.deb
+git config --global diff.tool bc3
+git config --global difftool.bc3.trustExitCode true
+git config --global merge.tool bc3
+git config --global mergetool.bc3.trustExitCode true
+
+# Install Chrome
+wget -O chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i chrome.deb
+rm chrome.deb
 
 # Get missing dependencies for the packages installed with dpkg
 sudo apt-get install -f --assume-yes
