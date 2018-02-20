@@ -1,6 +1,6 @@
 #!/bin/bash
 # NOTE: Depends on the wmctrl, sqlite3 and jq packages. None of these are typically installed out of the box on any
-# debian flavor. Of course, also depends on chromium-browser being present.
+# debian flavor. Of course, also depends on chromium-browser or google-chrome being present.
 #
 # Resets Chromium or Chrome browser preferences and then modfies the default to my liking:
 # - Delete all search engines except DuckDuckGo.
@@ -17,7 +17,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-if [ $# -ne 1 ] || [[ "$1" != "chromium-browser" ] && [ "$1" != "google-chrome" ]]; then
+if [[ ($# -ne 1) || (("$1" != "chromium-browser") && ("$1" != "google-chrome")) ]]; then
     echo "Error: The only argument must either be chromium-browser or google-chrome."
     exit 1
 fi
@@ -61,14 +61,11 @@ sleep 10
 wmctrl -c $title
 sleep 3
 
-# Delete all search engines except DuckDuckGo
-sqlite3 $config_folder/Default/Web\ Data "delete from keywords where short_name <> 'DuckDuckGo';"
-
-# Get the GUID of DuckDuckGo
-duck_guid=$(sqlite3 $config_folder/Default/Web\ Data "select sync_guid from keywords where short_name='DuckDuckGo';" "")
+# Delete all search engines
+sqlite3 $config_folder/Default/Web\ Data "delete from keywords;"
 
 # Modify most of the preferences to my liking (see comments at the top for details)...
-cat $config_folder/Default/Preferences | jq --arg guid $duck_guid '.browser.has_seen_welcome_page=true | .alternate_error_pages.enabled=false | .autofill.enabled=false | .credentials_enable_service=false | .default_search_provider.synced_guid=$guid | .default_search_provider_data.template_url_data={ "keyword": "duckduckgo.com", "short_name": "DuckDuckGo", "suggestions_url": "https://duckduckgo.com/ac/?q={searchTerms}&type=list", "synced_guid": $guid, "url": "https://duckduckgo.com/?q={searchTerms}&t=canonical" } | .enable_do_not_track=true | .intl.accept_languages="en-US,en,de-CH,de" | .net.network_prediction_options=2 | .search.suggest_enabled=true | .spellcheck.dictionaries += ["en-US", "de"] | .translate_blocked_languages += ["de"]' >adapted-preferences.json
+cat $config_folder/Default/Preferences | jq '.browser.has_seen_welcome_page=true | .alternate_error_pages.enabled=false | .autofill.enabled=false | .credentials_enable_service=false | .default_search_provider_data.template_url_data={ "keyword": "duckduckgo.com", "short_name": "DuckDuckGo", "suggestions_url": "https://duckduckgo.com/ac/?q={searchTerms}&type=list", "url": "https://duckduckgo.com/?q={searchTerms}&t=canonical" } | .enable_do_not_track=true | .intl.accept_languages="en-US,en,de-CH,de" | .net.network_prediction_options=2 | .search.suggest_enabled=true | .spellcheck.dictionaries += ["en-US", "de"] | .translate_blocked_languages += ["de"]' >adapted-preferences.json
 mv adapted-preferences.json $config_folder/Default/Preferences
 
 # ...except for background mode, which sits in a different file 
