@@ -1,0 +1,7 @@
+#!/bin/bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+wget -qO- https://deb.nodesource.com/setup_8.x | sudo bash -
+sudo apt-get install nodejs

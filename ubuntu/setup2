@@ -28,9 +28,7 @@ gsettings set org.gnome.settings-daemon.plugins.power percentage-critical 5
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 900
 
 ./../common/add-printer
-
-# Install nodejs and npm
-sudo apt-get install nodejs npm --assume-yes
+./../common/install-nodejs
 
 # Uninstall Firefox, install Chromium
 sudo apt-get remove firefox ubuntu-web-launchers --assume-yes
