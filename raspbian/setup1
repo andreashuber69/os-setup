@@ -10,6 +10,7 @@ sudo raspi-config nonint do_change_timezone Europe/Zurich
 sudo apt-get update
 sudo apt-get upgrade --assume-yes
 
+./../common/init-git
 ./../common/install-prerequisites
 
 # Install printing support

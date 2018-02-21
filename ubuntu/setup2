@@ -3,6 +3,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+./../common/init-git
 ./../common/install-prerequisites
 
 # Enlarge swap file to the amount of physical memory. Besides other benefits, this should enable hibernation.

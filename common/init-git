@@ -1,0 +1,10 @@
+#!/bin/bash
+# NOTE: Depends on the git package.
+set -o errexit
+set -o nounset
+set -o pipefail
+
+read -p "Enter the github user email address: " email
+git config --global user.name "Andreas Huber"
+git config --global user.email "$email"
+git config --global credential.helper 'cache --timeout 86400'
