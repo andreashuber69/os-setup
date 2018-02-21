@@ -59,7 +59,7 @@ sudo mv adapted-master-preferences.json $master_preferences
 $1 &
 sleep 10
 
-# Close Chromium and wait for it to shut down completely
+# Close browser and wait for it to shut down completely
 wmctrl -c $title
 sleep 3
 
