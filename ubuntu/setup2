@@ -18,7 +18,7 @@ sudo swapon /swapfile
 # cat enable-hibernation-in-ui.txt | sudo tee -a /etc/polkit-1/localauthority/50-local.d/com.ubuntu.enable-hibernate.pkla
 
 # Power Settings
-gsettings set org.gnome.desktop.session idle-delay 600
+gsettings set org.gnome.desktop.session idle-delay 900
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 3600
 gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'suspend'
 # Uncomment this once hibernation works
@@ -59,11 +59,15 @@ rm chrome.deb
 # Get missing dependencies for the packages installed with dpkg
 sudo apt-get install -f --assume-yes
 
+# This is not currently working 100% unattended, see comments in script for more information.
+./../common/reset-browser-preferences google-chrome
+
 # Install ownCloud
 # https://software.opensuse.org/download/package?project=isv:ownCloud:desktop&package=owncloud-client
 echo "deb http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/Ubuntu_17.10/ /" | sudo tee -a /etc/apt/sources.list.d/owncloud-client.list
-wget -nv https://download.opensuse.org/repositories/isv:ownCloud:desktop/Ubuntu_17.10/Release.key -O ownCloud.key
+wget -O ownCloud.key https://download.opensuse.org/repositories/isv:ownCloud:desktop/Ubuntu_17.10/Release.key
 sudo apt-key add - < ownCloud.key
 rm ownCloud.key
 sudo apt-get update
 sudo apt-get install owncloud-client
+owncloud ~

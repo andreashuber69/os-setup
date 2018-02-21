@@ -3,7 +3,7 @@
 # debian flavor. Of course, also depends on chromium-browser or google-chrome being present.
 #
 # Resets Chromium or Chrome browser preferences and then modfies the default to my liking:
-# - Delete all search engines except DuckDuckGo.
+# - Delete all search engines.
 # - Set DuckDuckGo as the default search engine.
 # - Turn off 'Use a web service to help resolve navigation errors'.
 # - Turn off 'Use a prediction service to load pages more quickly'.
@@ -50,6 +50,8 @@ if [ ! -f "$master_preferences" ]; then
     echo "{ }" | sudo tee $master_preferences
 fi
 
+# This currently works to prevent first run interaction for Chromium, but apparently it's not currently possible to
+# avoid first run interaction with Chrome, see https://bugs.chromium.org/p/chromium/issues/detail?id=418093.
 cat $master_preferences | jq '.first_run_tabs=["http://new_tab_page"]' >adapted-master-preferences.json
 sudo mv adapted-master-preferences.json $master_preferences
 
