@@ -32,8 +32,8 @@ The following steps describe how I've set up my **Dell XPS 13 9370**.
 12. Click **New Partition Table...** and **Continue**.
 13. Select **free space**, click **+**, enter *256* for **Size**, select **EFI System Partition** for **Use as** and
     click **OK**.
-14. Select **free space**, click **+**, enter *256* for **Size**, select **/boot** as **Mount Point** and click **OK**. 
-15. Select **free space**, click **+**, enter *614400* for **Size**, select **physical volume for encryption** for
+14. Select **free space**, click **+**, enter *768* for **Size**, select **/boot** as **Mount Point** and click **OK**. 
+15. Select **free space**, click **+**, enter *524288* for **Size**, select **physical volume for encryption** for
     **Use as**, enter a password (twice), check **Overwrite empty disk space** and click **OK**. 
 16. As a result of the previous step a new partition will be created under **/dev/mapper/..**. Select the partition and
     click **Change...**.
@@ -48,10 +48,18 @@ The following steps describe how I've set up my **Dell XPS 13 9370**.
 24. Select **Yes** and press **Enter**.
 25. Select **Reboot** and press **Enter**.
 
-## D. Install Software
+## D. Update and Reenable Secure Boot
 1. Open a terminal window.
 2. `sudo apt-get install git --assume-yes`
 3. `git clone https://github.com/andreashuber69/os-setup.git`
 4. `cd os-setup/ubuntu`
 5. `./setup1`
+6. After updates have been installed, you will be guided through reenabling **Secure Boot**, after which the system will
+   reboot automatically.
+7. Wait for the message **Press any key to perform MOK management** shown on a blue screen and hit any key.
+8. Select **Change Secure Boot state** and press **Enter**.
+9. Enter the requested letters of the password.
+10. Select **Yes** and press **Enter**.
+11. Select **Reboot** and press **Enter**.
 
+## E. Install Software
