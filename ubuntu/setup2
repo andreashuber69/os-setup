@@ -6,14 +6,18 @@ set -o pipefail
 ./../common/init-git
 ./../common/install-prerequisites
 
-# Enlarge swap file to the amount of physical memory. Besides other benefits, this should enable hibernation.
-# For some reason (probably drivers) hibernation does not work yet, but we'll do this anyway so that we can easily
-# enable hibernation later.
+# Enlarge swap file to the amount of physical memory.
 sudo swapoff -a
 sudo fallocate -l 16G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
+
+# Hibernation does not work yet. It is probably due to the fact that Ubuntu requires a swap partition rather than
+# a swap file for hibernation. It appears that setting up an encrypted swap partition is currently too complicated.
+# The stock installer seems to allow it but then crashes. Setting it up after installation requires booting into a
+# live environment, which seems too much hassle, given that the next version of Ubuntu might support it out of the
+# box.
 
 # Enable hibernation in UI (uncomment this once hibernation works)
 # cat enable-hibernation-in-ui.txt | sudo tee -a /etc/polkit-1/localauthority/50-local.d/com.ubuntu.enable-hibernate.pkla
