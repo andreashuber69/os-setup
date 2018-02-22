@@ -13,23 +13,24 @@ sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
 
-# Hibernation does not work yet. It is probably due to the fact that Ubuntu requires a swap partition rather than
-# a swap file for hibernation. It appears that setting up an encrypted swap partition is currently too complicated.
-# The stock installer seems to allow it but then crashes. Setting it up after installation requires booting into a
-# live environment, which seems too much hassle, given that the next version of Ubuntu might support it out of the
-# box.
+# Hibernation does not work yet. It is probably due to the fact that Ubuntu requires a swap partition rather than a swap
+# file for hibernation. It appears that setting up an encrypted swap partition is currently too complicated. The stock
+# installer seems to allow it but then crashes. Setting it up after installation requires booting into a live
+# environment, which seems too much hassle, given that the next version of Ubuntu might support it out of the box.
 
 # Enable hibernation in UI (uncomment this once hibernation works)
 # cat enable-hibernation-in-ui.txt | sudo tee -a /etc/polkit-1/localauthority/50-local.d/com.ubuntu.enable-hibernate.pkla
 
 # Power Settings
 gsettings set org.gnome.desktop.session idle-delay 900
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'suspend'
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 900
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'suspend'
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 3600
 gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'suspend'
+gsettings set org.gnome.settings-daemon.plugins.power percentage-critical 5
 # Uncomment this once hibernation works
 # gsettings set org.gnome.settings-daemon.plugins.power critical-battery-action 'hibernate'
-gsettings set org.gnome.settings-daemon.plugins.power percentage-critical 5
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 900
 
 ./../common/add-printer
 ./../common/install-nodejs
