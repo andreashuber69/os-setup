@@ -9,4 +9,4 @@ sudo apt-get upgrade --assume-yes
 
 # Re-enable secure boot
 sudo update-secureboot-policy --enable
-
+sudo reboot
