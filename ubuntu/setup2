@@ -39,14 +39,14 @@ sudo apt-get install chromium-browser --assume-yes
 # Install Visual Studio Code
 # https://code.visualstudio.com/docs/setup/linux
 wget -O vs-code.deb https://go.microsoft.com/fwlink/?LinkID=760868
-sudo dpkg -i vs-code.deb
+sudo dpkg -i --force-depends vs-code.deb
 rm vs-code.deb
 
 # Install Beyond Compare
 # http://www.scootersoftware.com/download.php?zz=kb_linux_install
 # https://askubuntu.com/questions/621351/gdebi-vs-dpkg-how-does-gdebi-automatically-gets-missing-dependancies-can-i-u
 wget -O bcompare.deb https://www.scootersoftware.com/bcompare-4.2.4.22795_amd64.deb
-sudo dpkg -i bcompare.deb
+sudo dpkg -i --force-depends bcompare.deb
 rm bcompare.deb
 git config --global diff.tool bc3
 git config --global difftool.bc3.trustExitCode true
@@ -55,7 +55,7 @@ git config --global mergetool.bc3.trustExitCode true
 
 # Install Chrome
 wget -O chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i chrome.deb
+sudo dpkg -i --force-depends chrome.deb
 rm chrome.deb
 
 # Get missing dependencies for the packages installed with dpkg
@@ -71,5 +71,5 @@ wget -O ownCloud.key https://download.opensuse.org/repositories/isv:ownCloud:des
 sudo apt-key add - < ownCloud.key
 rm ownCloud.key
 sudo apt-get update
-sudo apt-get install owncloud-client
-owncloud ~
+sudo apt-get install owncloud-client --assume-yes
+owncloud &
