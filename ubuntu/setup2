@@ -1,4 +1,5 @@
 #!/bin/bash
+# Assumes that setup1 has been executed successfully.
 set -o errexit
 set -o nounset
 set -o pipefail

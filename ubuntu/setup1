@@ -1,4 +1,5 @@
 #!/bin/bash
+# Assumes that setup2 will be executed after the reboot.
 set -o errexit
 set -o nounset
 set -o pipefail

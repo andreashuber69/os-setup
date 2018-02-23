@@ -39,8 +39,8 @@ The following steps describe how I've set up my **Dell XPS 13 9370**.
     click **Change...**.
 17. Select **/** as **Mount Point** and click **OK**.
 18. Click **Install Now** and **Continue**.
-19. On the **Where are you?**, **Keyboard layout** and **Who are you?** screens, enter the required information and click
-    **Continue**.
+19. On the **Where are you?**, **Keyboard layout** and **Who are you?** screens, enter the required information and
+    click **Continue**.
 20. When the installation has completed, click **Restart Now**.
 21. Wait for the message **Press any key to perform MOK management** shown on a blue screen and hit any key.
 22. Select **Change Secure Boot state** and press **Enter**.
@@ -63,3 +63,5 @@ The following steps describe how I've set up my **Dell XPS 13 9370**.
 11. Select **Reboot** and press **Enter**.
 
 ## E. Install Software
+1. Open a terminal window.
+2. `./setup2`
