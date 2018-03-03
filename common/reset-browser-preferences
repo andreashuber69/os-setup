@@ -57,7 +57,7 @@ sudo mv adapted-master-preferences.json $master_preferences
 
 # Restart browser and wait for the config initialization to finish
 $1 &
-sleep 10
+sleep 20
 
 # Close browser and wait for it to shut down completely
 wmctrl -c $title

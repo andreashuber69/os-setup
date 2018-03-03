@@ -26,7 +26,7 @@ sudo usermod -a -G lpadmin pi
 sudo cp 51-trezor.rules /etc/udev/rules.d
 
 # Add panel items (displayed in the top right corner)
-cat ./panel-items-to-add >> ~/.config/lxpanel/LXDE-pi/panels/panel
+# cat ./panel-items-to-add >> ~/.config/lxpanel/LXDE-pi/panels/panel
 
 # Set options that require reboot
 sudo raspi-config nonint do_overscan 1
