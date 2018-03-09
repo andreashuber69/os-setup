@@ -92,7 +92,7 @@ sudo apt-get update
 sudo apt-get install owncloud-client --assume-yes
 owncloud &
 
-# Install raccoon
-sudo mkdir /opt/raccoon
+# Install Raccoon
+sudo mkdir /opt/Raccoon
 sudo wget -O /opt/raccoon/raccoon.jar http://raccoon.onyxbits.de/sites/raccoon.onyxbits.de/files/raccoon-4.2.1.jar
 sudo chmod u+x /opt/raccoon/raccoon.jar
