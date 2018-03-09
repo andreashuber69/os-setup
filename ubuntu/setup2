@@ -42,6 +42,15 @@ sudo apt-get install chromium-browser --assume-yes
 
 ./../common/reset-browser-preferences chromium-browser
 
+# Create udev rules file for Trezor
+# http://doc.satoshilabs.com/trezor-user/settingupchromeonlinux.html
+sudo cp 51-trezor.rules /etc/udev/rules.d
+
+# Install Trezor Bridge
+wget -O trezor-bridge.deb https://wallet.trezor.io/data/bridge/2.0.7/trezor-bridge_2.0.7_amd64.deb
+sudo dpkg -i --force-depends trezor-bridge.deb
+rm trezor-bridge.deb
+
 # Install Visual Studio Code
 # https://code.visualstudio.com/docs/setup/linux
 wget -O vs-code.deb https://go.microsoft.com/fwlink/?LinkID=760868
