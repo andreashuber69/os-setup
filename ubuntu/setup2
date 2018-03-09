@@ -94,5 +94,5 @@ owncloud &
 
 # Install Raccoon
 sudo mkdir /opt/Raccoon
-sudo wget -O /opt/raccoon/raccoon.jar http://raccoon.onyxbits.de/sites/raccoon.onyxbits.de/files/raccoon-4.2.1.jar
-sudo chmod u+x /opt/raccoon/raccoon.jar
+sudo wget -O /opt/Raccoon/raccoon.jar http://raccoon.onyxbits.de/sites/raccoon.onyxbits.de/files/raccoon-4.2.1.jar
+sudo chmod u+x /opt/Raccoon/raccoon.jar
