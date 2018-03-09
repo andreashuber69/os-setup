@@ -36,6 +36,9 @@ gsettings set org.gnome.settings-daemon.plugins.power percentage-critical 5
 ./../common/add-printer
 ./../common/install-nodejs
 
+# Install Java Runtime Environment
+sudo apt-get install default-jre --assume-yes
+
 # Uninstall Firefox, install Chromium
 sudo apt-get remove firefox ubuntu-web-launchers --assume-yes
 sudo apt-get install chromium-browser --assume-yes
@@ -88,3 +91,8 @@ rm ownCloud.key
 sudo apt-get update
 sudo apt-get install owncloud-client --assume-yes
 owncloud &
+
+# Install raccoon
+sudo mkdir /opt/raccoon
+sudo wget -O /opt/raccoon/raccoon.jar http://raccoon.onyxbits.de/sites/raccoon.onyxbits.de/files/raccoon-4.2.1.jar
+sudo chmod u+x /opt/raccoon/raccoon.jar
