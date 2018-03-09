@@ -21,10 +21,6 @@ sudo usermod -a -G lpadmin pi
 ./../common/install-nodejs
 ./../common/reset-browser-preferences chromium-browser
 
-# Create udev rules file for Trezor
-# http://doc.satoshilabs.com/trezor-user/settingupchromeonlinux.html
-sudo cp 51-trezor.rules /etc/udev/rules.d
-
 # Add panel items (displayed in the top right corner)
 # cat ./panel-items-to-add >> ~/.config/lxpanel/LXDE-pi/panels/panel
 
