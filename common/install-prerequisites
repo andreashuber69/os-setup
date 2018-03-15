@@ -3,6 +3,5 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-# Install wmctrl (close applications from the command line), sqlite3, jq (command line JSON parser/editor) and ntfs-3g
-# (necessary if you want to mount a memory stick on Windows and Linux)
-sudo apt-get install wmctrl sqlite3 jq ntfs-3g --assume-yes
+# Install wmctrl (close applications from the command line), sqlite3, jq (command line JSON parser/editor)
+sudo apt-get install wmctrl sqlite3 jq --assume-yes
