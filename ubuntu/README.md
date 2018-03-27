@@ -9,7 +9,7 @@ The following steps describe how I've set up my **Dell XPS 13 9370**.
    [Windows](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows) or
    [Linux](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-ubuntu).
 
-## B. Temorarily Allow Booting from USB Sticks
+## B. Temporarily Allow Booting from USB Sticks
 1. Turn on the **Dell XPS 13 9370** and keep hitting the **F2** button until the BIOS Setup appears.
 2. Navigate to **System Configuration**, **Thunderbolt Adapter Configuration**.
 3. Check **Enable Thunderbolt Adapter Boot Support**.
@@ -48,13 +48,13 @@ The following steps describe how I've set up my **Dell XPS 13 9370**.
 24. Select **Yes** and press **Enter**.
 25. Select **Reboot** and press **Enter**.
 
-## D. Update and Reenable Secure Boot
+## D. Update and Re-enable Secure Boot
 1. Open a terminal window.
 2. `sudo apt-get install git --assume-yes`
 3. `git clone https://github.com/andreashuber69/os-setup.git`
 4. `cd os-setup/ubuntu`
 5. `./setup1`
-6. After updates have been installed, you will be guided through reenabling **Secure Boot**, after which the system will
+6. After updates have been installed, you will be guided through re-enabling **Secure Boot**, after which the system will
    reboot automatically.
 7. Wait for the message **Press any key to perform MOK management** shown on a blue screen and hit any key.
 8. Select **Change Secure Boot state** and press **Enter**.

@@ -1,3 +1,13 @@
 {
-    "git.confirmSync": false
+    "cSpell.enabledLanguageIds": [
+        "markdown",
+        "plaintext"
+    ],
+    "cSpell.words": [
+        "bootable",
+        "noobs",
+        "raspbian",
+        "uefi"
+    ],
+    "git.confirmSync": false    
 }
