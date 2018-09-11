@@ -5,8 +5,9 @@ set -o nounset
 set -o pipefail
 
 # Direct web browser to http://localhost:631 for administration 
-lpadmin -p Brother_HL-2270DW -E -v dnssd://Brother%20HL-2270DW%20series._pdl-datastream._tcp.local/ -m gutenprint.5.2://brother-hl-2250dn/expert
-lpadmin -p Brother_HL-2270DW -o PageSize=A4
-lpadmin -p Brother_HL-2270DW -o Resolution=600dpi
-lpadmin -p Brother_HL-2270DW -o Duplex=DuplexNoTumble
-lpoptions -d Brother_HL-2270DW
+lpadmin -p Brother_MFC-L2750DW -E -v dnssd://Brother%20MFC-L2750DW%20series._ipp._tcp.local/?uuid=e3248000-80ce-11db-8000-3c2af455cc92 -m gutenprint.5.2://pcl-g_6_lf_a4
+lpadmin -p Brother_MFC-L2750DW -o PageSize=A4
+lpadmin -p Brother_MFC-L2750DW -o Resolution=600dpi
+lpadmin -p Brother_MFC-L2750DW -o Duplex=DuplexNoTumble
+lpoptions -d Brother_MFC-L2750DW
+
