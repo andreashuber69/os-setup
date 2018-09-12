@@ -15,7 +15,6 @@ sudo apt-get upgrade --assume-yes
 
 # Install printing support
 sudo apt-get install cups --assume-yes
-sudo usermod -a -G lpadmin pi
 
 ./../common/add-printer
 ./../common/install-nodejs
