@@ -21,32 +21,31 @@ The following steps describe how I've set up my **Dell XPS 13 9370**.
 3. Under **UEFI BOOT**, select the USB stick and press **Enter**.
 4. Select **Install Ubuntu** and press **Enter**.
 5. On the **Welcome** screen, accept the default **English** and click **Continue**.
-6. On the **Wireless** screen, select a Wi-Fi network to connect to and click **Connect**.
-7. In the **Wi-Fi Network Authentication Required** dialog, enter the network password.
-   > **Caution**: The keyboard might not be set correctly yet. Use **Show Password** to verify.
-8. Click **Connect** and click **Continue**. 
-9. On the **Preparing to install Ubuntu** screen, check **Download updates while installing Ubuntu** and **Install
-   third-party software...**.
-10. Enter a temporary password (twice) and click **Continue**.
-11. On the **Installation type** screen, select **Something else** and click **Continue**.
-12. Click **New Partition Table...** and **Continue**.
-13. Select **free space**, click **+**, enter *256* for **Size**, select **EFI System Partition** for **Use as** and
+6. On the **Keyboard layout** screen, select the correct layout and click **Continue**.
+7. On the **Wireless** screen, select a Wi-Fi network to connect to and click **Connect**.
+8. In the **Wi-Fi Network Authentication Required** dialog, enter the network password.
+9. Click **Connect** and click **Continue**. 
+10. On the **Updates and other software** screen, check **Download updates while installing Ubuntu** and **Install
+    third-party software...**.
+11. Enter a temporary password (twice) and click **Continue**.
+12. On the **Installation type** screen, select **Something else** and click **Continue**.
+13. Click **New Partition Table...** and **Continue**.
+14. Select **free space**, click **+**, enter *256* for **Size**, select **EFI System Partition** for **Use as** and
     click **OK**.
-14. Select **free space**, click **+**, enter *768* for **Size**, select **/boot** as **Mount Point** and click **OK**. 
-15. Select **free space**, click **+**, enter *524288* for **Size**, select **physical volume for encryption** for
+15. Select **free space**, click **+**, enter *768* for **Size**, select **/boot** as **Mount Point** and click **OK**. 
+16. Select **free space**, click **+**, enter *524288* for **Size**, select **physical volume for encryption** for
     **Use as**, enter a password (twice), check **Overwrite empty disk space** and click **OK**. 
-16. As a result of the previous step a new partition will be created under **/dev/mapper/..**. Select the partition and
+17. As a result of the previous step a new partition will be created under **/dev/mapper/..**. Select the partition and
     click **Change...**.
-17. Select **/** as **Mount Point** and click **OK**.
-18. Click **Install Now** and **Continue**.
-19. On the **Where are you?**, **Keyboard layout** and **Who are you?** screens, enter the required information and
-    click **Continue**.
-20. When the installation has completed, click **Restart Now**.
-21. Wait for the message **Press any key to perform MOK management** shown on a blue screen and hit any key.
-22. Select **Change Secure Boot state** and press **Enter**.
-23. Enter the requested letters of the password.
+18. Select **/** as **Mount Point** and click **OK**.
+19. Click **Install Now** and **Continue** twice.
+20. On the **Where are you?** and **Who are you?** screens, enter the required information and click **Continue**.
+21. When the installation has completed, click **Restart Now**.
+22. Wait for the message **Press any key to perform MOK management** shown on a blue screen and hit any key.
+23. Select **Enroll MOK** and press **Enter** then select **Continue** and press **Enter**.
 24. Select **Yes** and press **Enter**.
-25. Select **Reboot** and press **Enter**.
+25. Enter the password and press **Enter**.
+26. Select **Reboot** and press **Enter**.
 
 ## D. Update and Re-enable Secure Boot
 1. Open a terminal window.
