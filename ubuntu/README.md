@@ -2,9 +2,9 @@
 The following steps describe how I've set up my **Dell XPS 13 9370**.
 
 ## A. Create a Bootable USB Stick
-1. Download the [Ubuntu Desktop 17.10.1](http://releases.ubuntu.com/17.10.1/ubuntu-17.10.1-desktop-amd64.iso) ISO image.
+1. Download the [Ubuntu Desktop 18.04](http://releases.ubuntu.com/18.04/ubuntu-18.04.1-desktop-amd64.iso) ISO image.
 2. Verify the image as explained [here](https://tutorials.ubuntu.com/tutorial/tutorial-how-to-verify-ubuntu), using the
-   associated [SHA256SUMS and SHA256SUMS.gpg files](http://releases.ubuntu.com/17.10.1/)
+   associated [SHA256SUMS and SHA256SUMS.gpg files](http://releases.ubuntu.com/18.04/)
 3. Create a bootable USB stick, by following the instructions for
    [Windows](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows) or
    [Linux](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-ubuntu).
