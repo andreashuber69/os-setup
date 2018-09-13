@@ -53,13 +53,7 @@ The following steps describe how I've set up my **Dell XPS 13 9370**.
 3. `git clone https://github.com/andreashuber69/os-setup.git`
 4. `cd os-setup/ubuntu`
 5. `./setup1`
-6. After updates have been installed, you will be guided through re-enabling **Secure Boot**, after which the system will
-   reboot automatically.
-7. Wait for the message **Press any key to perform MOK management** shown on a blue screen and hit any key.
-8. Select **Change Secure Boot state** and press **Enter**.
-9. Enter the requested letters of the password.
-10. Select **Yes** and press **Enter**.
-11. Select **Reboot** and press **Enter**.
+6. After the updates have been installed the system will reboot automatically.
 
 ## E. Install Software
 1. Open a terminal window.

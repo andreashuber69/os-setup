@@ -7,7 +7,4 @@ set -o pipefail
 # Update and upgrade
 sudo apt-get update
 sudo apt-get upgrade --assume-yes
-
-# Re-enable secure boot
-sudo update-secureboot-policy --enable
 sudo reboot

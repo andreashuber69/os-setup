@@ -50,7 +50,7 @@ sudo apt-get install chromium-browser --assume-yes
 sudo cp 51-trezor.rules /etc/udev/rules.d
 
 # Install Trezor Bridge
-wget -O trezor-bridge.deb https://wallet.trezor.io/data/bridge/2.0.7/trezor-bridge_2.0.7_amd64.deb
+wget -O trezor-bridge.deb https://wallet.trezor.io/data/bridge/2.0.19/trezor-bridge_2.0.19_amd64.deb
 sudo dpkg -i --force-depends trezor-bridge.deb
 rm trezor-bridge.deb
 
@@ -63,7 +63,7 @@ rm vs-code.deb
 # Install Beyond Compare
 # http://www.scootersoftware.com/download.php?zz=kb_linux_install
 # https://askubuntu.com/questions/621351/gdebi-vs-dpkg-how-does-gdebi-automatically-gets-missing-dependancies-can-i-u
-wget -O bcompare.deb https://www.scootersoftware.com/bcompare-4.2.4.22795_amd64.deb
+wget -O bcompare.deb http://www.scootersoftware.com/bcompare-4.2.6.23150_amd64.deb
 sudo dpkg -i --force-depends bcompare.deb
 rm bcompare.deb
 git config --global diff.tool bc3
@@ -71,21 +71,13 @@ git config --global difftool.bc3.trustExitCode true
 git config --global merge.tool bc3
 git config --global mergetool.bc3.trustExitCode true
 
-# Install Chrome
-wget -O chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i --force-depends chrome.deb
-rm chrome.deb
-
 # Get missing dependencies for the packages installed with dpkg
 sudo apt-get install -f --assume-yes
 
-# This is not currently working 100% unattended, see comments in script for more information.
-./../common/reset-browser-preferences google-chrome
-
 # Install ownCloud
 # https://software.opensuse.org/download/package?project=isv:ownCloud:desktop&package=owncloud-client
-echo "deb http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/Ubuntu_17.10/ /" | sudo tee -a /etc/apt/sources.list.d/owncloud-client.list
-wget -O ownCloud.key https://download.opensuse.org/repositories/isv:ownCloud:desktop/Ubuntu_17.10/Release.key
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/Ubuntu_18.04/ /' > /etc/apt/sources.list.d/isv:ownCloud:desktop.list"
+wget -nv https://download.opensuse.org/repositories/isv:ownCloud:desktop/Ubuntu_18.04/Release.key -O ownCloud.key
 sudo apt-key add - < ownCloud.key
 rm ownCloud.key
 sudo apt-get update
