@@ -82,4 +82,12 @@ sudo apt-key add - < ownCloud.key
 rm ownCloud.key
 sudo apt-get update
 sudo apt-get install owncloud-client --assume-yes
+mkdir -p ~/.local/share/data/ownCloud && cp ./owncloud.cfg "$_"
+mkdir -p ~/ownCloud/andreas
+mkdir -p ~/ownCloud/family
+ln -s ~/ownCloud/andreas/Documents ~/Documents/andreas
+ln -s ~/ownCloud/family/Documents ~/Documents/family
+ln -s ~/ownCloud/andreas/Photos ~/Pictures/andreas
+ln -s ~/ownCloud/family/Photos ~/Pictures/family
+ln -s ~/ownCloud/family/Videos ~/Videos/family
 owncloud &
