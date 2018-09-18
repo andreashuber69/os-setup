@@ -63,7 +63,7 @@ rm vs-code.deb
 # Install Beyond Compare
 # http://www.scootersoftware.com/download.php?zz=kb_linux_install
 # https://askubuntu.com/questions/621351/gdebi-vs-dpkg-how-does-gdebi-automatically-gets-missing-dependancies-can-i-u
-wget -O bcompare.deb http://www.scootersoftware.com/bcompare-4.2.6.23150_amd64.deb
+wget -O bcompare.deb https://www.scootersoftware.com/bcompare-4.2.6.23150_amd64.deb
 sudo dpkg -i --force-depends bcompare.deb
 rm bcompare.deb
 git config --global diff.tool bc3
@@ -71,8 +71,16 @@ git config --global difftool.bc3.trustExitCode true
 git config --global merge.tool bc3
 git config --global mergetool.bc3.trustExitCode true
 
+# Install Chrome (necessary for NETFLIX)
+wget -O chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i --force-depends chrome.deb
+rm chrome.deb
+
 # Get missing dependencies for the packages installed with dpkg
 sudo apt-get install -f --assume-yes
+
+# This is not currently working 100% unattended, see comments in script for more information.
+./../common/reset-browser-preferences google-chrome
 
 # Install ownCloud
 # https://software.opensuse.org/download/package?project=isv:ownCloud:desktop&package=owncloud-client
