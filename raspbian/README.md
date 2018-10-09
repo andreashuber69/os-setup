@@ -11,4 +11,4 @@ Use [NOOBS or NOOBS Lite](https://www.raspberrypi.org/downloads/noobs/) to insta
 4. `./setup1` (this will reboot the **Raspberry Pi** when everything is done)
 
 ## C. Install ownCloud
-Proceed with [C. Install ownCloud](https://github.com/andreashuber69/owncloud#c-install-owncloud).
+Proceed with [C. Install ownCloud](https://github.com/andreashuber69/owncloud/blob/master/doc/install-owncloud.md#c-install-owncloud).
