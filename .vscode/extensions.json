@@ -1,5 +1,7 @@
 {
     "recommendations": [
-        "streetsidesoftware.code-spell-checker"
+        "davidanson.vscode-markdownlint",
+        "eamodio.gitlens",
+        "streetsidesoftware.code-spell-checker",
     ]
 }
